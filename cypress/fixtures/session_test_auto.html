@@ -1,7 +1,7 @@
 <!--Here we have automatic session tracking-->
 <html>
 <head>
-<!--Countly script-->
+<!--Altruist script-->
 <script type='text/javascript' src='../../lib/countly.js'></script>
 <script type='module'>
 import { queryExtractor } from '../support/integration_helper.js';
@@ -22,7 +22,7 @@ console.error("cleared the storage");
 const confObj = queryExtractor(window.location.search);
 
 //initializing countly with params
-Countly.init({
+Altruist.init({
 	app_key: "YOUR_APP_KEY",
 	url: "https://your.domain.countly",
   device_id: "auto",
@@ -31,14 +31,14 @@ Countly.init({
   use_session_cookie: confObj.use_session_cookie || false,
 	debug:true
 })
-Countly.track_sessions();
-// Countly.track_pageview();
+Altruist.track_sessions();
+// Altruist.track_pageview();
 </script>
 </head>
 <body>
 <script type='text/javascript' >
 function clickEvent(){
-	Countly.add_event({
+	Altruist.add_event({
     key: "buttonClick",
     "segmentation": {
         "id": "id"
