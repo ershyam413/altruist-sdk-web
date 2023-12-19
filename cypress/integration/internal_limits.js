@@ -1,6 +1,6 @@
 /* eslint-disable cypress/no-unnecessary-waiting */
 /* eslint-disable require-jsdoc */
-var Countly = require("../../lib/countly");
+var Altruist = require("../../lib/countly");
 var hp = require("../support/helper");
 
 const limits = {
@@ -13,7 +13,7 @@ const limits = {
 };
 
 function initMain() {
-    Countly.init({
+    Altruist.init({
         app_key: "YOUR_APP_KEY",
         url: "https://your.domain.countly",
         test_mode_eq: true,
@@ -88,7 +88,7 @@ describe("Internal limit tests ", () => {
     it("Checks if custom event limits works", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.add_event(customEvent);
+            Altruist.add_event(customEvent);
             cy.fetch_local_event_queue().then((eq) => {
                 expect(eq.length).to.equal(1);
                 cy.check_custom_event_limit(eq[0], customEvent, limits);
@@ -98,7 +98,7 @@ describe("Internal limit tests ", () => {
     it("Checks if view event limits works", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.track_pageview(viewName);
+            Altruist.track_pageview(viewName);
             cy.fetch_local_event_queue().then((eq) => { // TODO: when view event is truncated we provide cvid instead of pvid. fix this
                 cy.log(eq);
                 expect(eq.length).to.equal(1);
@@ -112,14 +112,14 @@ describe("Internal limit tests ", () => {
     it("Checks if view event limits works", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.add_log(bread.one);
-            Countly.add_log(bread.two);
-            Countly.add_log(bread.three);
-            Countly.add_log(bread.four);
-            Countly.add_log(bread.five);
-            Countly.add_log(bread.six);
-            Countly.add_log(bread.seven);
-            Countly.log_error(error);
+            Altruist.add_log(bread.one);
+            Altruist.add_log(bread.two);
+            Altruist.add_log(bread.three);
+            Altruist.add_log(bread.four);
+            Altruist.add_log(bread.five);
+            Altruist.add_log(bread.six);
+            Altruist.add_log(bread.seven);
+            Altruist.log_error(error);
             cy.fetch_local_request_queue().then((rq) => {
                 expect(rq.length).to.equal(1);
                 cy.check_error_limit(rq[0], limits);
@@ -129,7 +129,7 @@ describe("Internal limit tests ", () => {
     it("Checks if user detail limits works", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.user_details(userDetail);
+            Altruist.user_details(userDetail);
             cy.fetch_local_request_queue().then((rq) => {
                 expect(rq.length).to.equal(1);
                 cy.check_user_details(rq[0], userDetail, limits);
@@ -139,16 +139,16 @@ describe("Internal limit tests ", () => {
     it("Checks if custom property limits works", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.userData.set(customProperties.set[0], customProperties.set[1]); // set custom property
-            Countly.userData.set_once(customProperties.set_once[0], customProperties.set_once[1]); // set custom property only if property does not exist
-            Countly.userData.increment_by(customProperties.increment_by[0], customProperties.increment_by[1]); // increment value in key by provided value
-            Countly.userData.multiply(customProperties.multiply[0], customProperties.multiply[1]); // multiply value in key by provided value
-            Countly.userData.max(customProperties.max[0], customProperties.max[1]); // save max value between current and provided
-            Countly.userData.min(customProperties.min[0], customProperties.min[1]); // save min value between current and provided
-            Countly.userData.push(customProperties.push[0], customProperties.push[1]); // add value to key as array element
-            Countly.userData.push_unique(customProperties.push_unique[0], customProperties.push_unique[1]); // add value to key as array element, but only store unique values in array
-            Countly.userData.pull(customProperties.pull[0], customProperties.pull[1]); // remove value from array under property with key as name
-            Countly.userData.save();
+            Altruist.userData.set(customProperties.set[0], customProperties.set[1]); // set custom property
+            Altruist.userData.set_once(customProperties.set_once[0], customProperties.set_once[1]); // set custom property only if property does not exist
+            Altruist.userData.increment_by(customProperties.increment_by[0], customProperties.increment_by[1]); // increment value in key by provided value
+            Altruist.userData.multiply(customProperties.multiply[0], customProperties.multiply[1]); // multiply value in key by provided value
+            Altruist.userData.max(customProperties.max[0], customProperties.max[1]); // save max value between current and provided
+            Altruist.userData.min(customProperties.min[0], customProperties.min[1]); // save min value between current and provided
+            Altruist.userData.push(customProperties.push[0], customProperties.push[1]); // add value to key as array element
+            Altruist.userData.push_unique(customProperties.push_unique[0], customProperties.push_unique[1]); // add value to key as array element, but only store unique values in array
+            Altruist.userData.pull(customProperties.pull[0], customProperties.pull[1]); // remove value from array under property with key as name
+            Altruist.userData.save();
             cy.fetch_local_request_queue().then((rq) => {
                 expect(rq.length).to.equal(1);
                 cy.check_custom_properties_limit(rq[0], customProperties, limits);

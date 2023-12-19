@@ -14,25 +14,25 @@ for (const cookie of cookies) {
 window.localStorage.clear();
 deleteAllCookies();
 console.error("cleared the storage");
-  Countly.init({
+  Altruist.init({
     app_key: "YOUR_APP_KEY",
     url: "https://your.domain.countly",
     debug:true,
     test_mode: true
   })
-  Countly.track_sessions();
-  Countly.track_pageview();
-  Countly.track_scrolls();
+  Altruist.track_sessions();
+  Altruist.track_pageview();
+  Altruist.track_scrolls();
   </script>
 </head>
 <body>
   <script type='text/javascript'>
   function view1(){
-    Countly.track_pageview("v1");
+    Altruist.track_pageview("v1");
     console.log("scroll test, v1 triggered");
   }
   function view2(){
-    Countly.track_pageview("v2");
+    Altruist.track_pageview("v2");
     console.log("scroll test, v2 triggered");
   }
   </script>

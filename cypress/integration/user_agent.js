@@ -1,10 +1,10 @@
 /* eslint-disable cypress/no-unnecessary-waiting */
 /* eslint-disable require-jsdoc */
-var Countly = require("../../lib/countly");
+var Altruist = require("../../lib/countly");
 var hp = require("../support/helper");
 
 function initMain() {
-    Countly.init({
+    Altruist.init({
         app_key: "YOUR_APP_KEY",
         url: "https://your.domain.countly",
         test_mode_eq: true
@@ -37,27 +37,27 @@ describe("User Agent tests ", () => {
         hp.haltAndClearStorage(() => {
             initMain();
             // from the config file set ua value
-            expect(Countly._internals.currentUserAgentString()).to.equal("abcd");
+            expect(Altruist._internals.currentUserAgentString()).to.equal("abcd");
             // we override the ua string
-            expect(Countly._internals.currentUserAgentString("123")).to.equal("123");
+            expect(Altruist._internals.currentUserAgentString("123")).to.equal("123");
         });
     });
     it("Check if userAgentDeviceDetection works as intended", () => {
         hp.haltAndClearStorage(() => {
             initMain();
             // setting ua value to strings that can pass the regex test
-            expect(Countly._internals.userAgentDeviceDetection("123")).to.equal("desktop");
-            expect(Countly._internals.userAgentDeviceDetection("mobile")).to.equal("phone");
-            expect(Countly._internals.userAgentDeviceDetection("tablet")).to.equal("tablet");
+            expect(Altruist._internals.userAgentDeviceDetection("123")).to.equal("desktop");
+            expect(Altruist._internals.userAgentDeviceDetection("mobile")).to.equal("phone");
+            expect(Altruist._internals.userAgentDeviceDetection("tablet")).to.equal("tablet");
         });
     });
     it("Check if userAgentSearchBotDetection works as intended", () => {
         hp.haltAndClearStorage(() => {
             initMain();
             // setting ua value to strings that can pass the regex test
-            expect(Countly._internals.userAgentSearchBotDetection("123")).to.equal(false);
-            expect(Countly._internals.userAgentSearchBotDetection("Googlebot")).to.equal(true);
-            expect(Countly._internals.userAgentSearchBotDetection("Google")).to.equal(false);
+            expect(Altruist._internals.userAgentSearchBotDetection("123")).to.equal(false);
+            expect(Altruist._internals.userAgentSearchBotDetection("Googlebot")).to.equal(true);
+            expect(Altruist._internals.userAgentSearchBotDetection("Google")).to.equal(false);
         });
     });
 });

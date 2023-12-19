@@ -1,10 +1,10 @@
 /* eslint-disable require-jsdoc */
-var Countly = require("../../lib/countly");
+var Altruist = require("../../lib/countly");
 var hp = require("../support/helper");
 import { triggerStorageChange } from "../support/integration_helper";
 
 function initMain(val) {
-    Countly.init({
+    Altruist.init({
         app_key: "YOUR_APP_KEY",
         url: "https://your.domain.countly",
         device_id: 0, // provide number
@@ -24,29 +24,29 @@ describe("Multi tab storage change test", () => {
             initMain("localstorage");
 
             // numerical device ID provided at init is converted to string
-            var id = Countly.get_device_id();
+            var id = Altruist.get_device_id();
             expect(id).to.equal("0");
 
             // Check short string id is set correctly
             triggerStorageChange("YOUR_APP_KEY/cly_id", "123");
-            id = Countly.get_device_id();
+            id = Altruist.get_device_id();
             expect(id).to.equal("123");
 
             // Check empty string id is set correctly
             triggerStorageChange("YOUR_APP_KEY/cly_id", "");
-            id = Countly.get_device_id();
+            id = Altruist.get_device_id();
             expect(id).to.equal("");
 
             // Check null id is set correctly
             triggerStorageChange("YOUR_APP_KEY/cly_id", null);
-            id = Countly.get_device_id();
+            id = Altruist.get_device_id();
             expect(id).to.equal(null);
 
             // Check long string numerical id is set correctly
             triggerStorageChange("YOUR_APP_KEY/cly_id", "12345678901234567890123456789012345678901234567890123456789012345678901234567890");
-            id = Countly.get_device_id();
+            id = Altruist.get_device_id();
             expect(id).to.equal("12345678901234567890123456789012345678901234567890123456789012345678901234567890");
-            Countly.user_details(userDetailObj);
+            Altruist.user_details(userDetailObj);
             cy.fetch_local_request_queue().then((rq) => {
                 expect(rq.length).to.equal(1);
                 cy.check_user_details(rq[0], userDetailObj);
@@ -55,28 +55,28 @@ describe("Multi tab storage change test", () => {
 
             // Check numerical conversion to string (positive)
             triggerStorageChange("YOUR_APP_KEY/cly_id", 123);
-            id = Countly.get_device_id();
+            id = Altruist.get_device_id();
             expect(id).to.equal("123");
 
             // Check numerical conversion to string (negative)
             triggerStorageChange("YOUR_APP_KEY/cly_id", -123);
-            id = Countly.get_device_id();
+            id = Altruist.get_device_id();
             expect(id).to.equal("-123");
 
             // Check numerical conversion to string (0)
             triggerStorageChange("YOUR_APP_KEY/cly_id", 0);
-            id = Countly.get_device_id();
+            id = Altruist.get_device_id();
             expect(id).to.equal("0");
 
             // Check numerical conversion to string (0)
             triggerStorageChange("YOUR_APP_KEY/cly_id", "{}");
-            id = Countly.get_device_id();
+            id = Altruist.get_device_id();
             expect(id).to.equal("{}");
         });
     });
     it("Check in multi instance scenarions device ID assigned correctly", () => {
         hp.haltAndClearStorage(() => {
-            let firstIns = Countly.init({
+            let firstIns = Altruist.init({
                 app_key: "YOUR_APP_KEY1",
                 url: "https://your.domain.countly",
                 device_id: 0,
@@ -85,7 +85,7 @@ describe("Multi tab storage change test", () => {
                 debug: true,
                 storage: "localstorage"
             });
-            let secondIns = Countly.init({
+            let secondIns = Altruist.init({
                 app_key: "YOUR_APP_KEY2",
                 url: "https://your.domain.countly",
                 device_id: -1,

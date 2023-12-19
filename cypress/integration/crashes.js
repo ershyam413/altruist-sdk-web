@@ -1,9 +1,9 @@
 /* eslint-disable require-jsdoc */
-var Countly = require("../../lib/countly");
+var Altruist = require("../../lib/countly");
 var hp = require("../support/helper");
 
 function initMain() {
-    Countly.init({
+    Altruist.init({
         app_key: "YOUR_APP_KEY",
         url: "https://your.domain.countly",
         test_mode: true
@@ -19,12 +19,12 @@ describe("Crashes tests ", () => {
     it("Checks if a caught crash is reported correctly", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.track_errors();
+            Altruist.track_errors();
             try {
                 cause_error();
             }
             catch (err) {
-                Countly.log_error(err);
+                Altruist.log_error(err);
             }
             cy.wait(3000).then(() => {
                 cy.fetch_local_request_queue().then((rq) => {

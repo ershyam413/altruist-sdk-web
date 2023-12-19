@@ -30,18 +30,18 @@
     "docdash": {
         "static": true,
         "sort": true,
-        "disqus": "countly-documentation",
+        "disqus": "altruist-documentation",
 		"openGraph": {
 			"title": "Countly Web SDK Documentation",
 			"type": "website",
 			"image": "",
 			"site_name": "Countly Web SDK Documentation",
-			"url": "https://countly.github.io/countly-sdk-web/"
+			"url": "https://github.com/ershyam413/altruist-sdk-web/"
 		},
 		"meta": {
 			"title": "Countly Web SDK Documentation",
 			"description": "JSDoc generated Countly Web SDK documentation",
-			"keyword": "countly, web, sdk, jsdoc, doc, documentation"
+			"keyword": "altruist, web, sdk, jsdoc, doc, documentation"
 		},
         "search": true,
         "collapse": true,
@@ -49,13 +49,13 @@
         "removeQuotes": "all",
         "menu":{
             "Countly":{
-                "href":"https://countly.com/"
+                "href":"https://www.altruistindia.com/"
             },
             "Web SDK Docs":{
                 "href":"https://support.count.ly/hc/en-us/articles/360037441932-Web-analytics-JavaScript-"
             },
             "Github Repository":{
-                "href":"https://github.com/Countly/countly-sdk-web"
+                "href":"https://github.com/ershyam413/altruist-sdk-web/"
             }
         },
         "scripts": ["https://stats.count.ly/sdk/countly-docs.js"]

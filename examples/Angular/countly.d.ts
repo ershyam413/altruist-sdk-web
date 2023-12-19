@@ -1,4 +1,4 @@
-declare module 'countly-sdk-web';
+declare module 'altruist-sdk-web';
 interface Window {
-  Countly: any;
+  Altruist: any;
 }

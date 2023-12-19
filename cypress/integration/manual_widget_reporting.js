@@ -1,6 +1,6 @@
 /* eslint-disable cypress/no-unnecessary-waiting */
 /* eslint-disable require-jsdoc */
-var Countly = require("../../lib/countly");
+var Altruist = require("../../lib/countly");
 var hp = require("../support/helper");
 
 const contactMe = true;
@@ -56,7 +56,7 @@ function common_rating_check(param, num) {
 }
 
 function initMain() {
-    Countly.init({
+    Altruist.init({
         app_key: "YOUR_APP_KEY",
         url: "https://your.domain.countly",
         test_mode_eq: true,
@@ -70,7 +70,7 @@ describe("Manual Rating Widget recording tests, old call ", () => {
     it("Checks if a rating object is send correctly", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.recordRatingWidgetWithID(ratingMaker("123", 1));
+            Altruist.recordRatingWidgetWithID(ratingMaker("123", 1));
             cy.fetch_local_event_queue().then((eq) => {
                 cy.log(eq);
                 expect(eq.length).to.equal(1);
@@ -84,7 +84,7 @@ describe("Manual Rating Widget recording tests, old call ", () => {
     it("Checks if rating recording without id would be stopped", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.recordRatingWidgetWithID(ratingMaker(undefined, 1));
+            Altruist.recordRatingWidgetWithID(ratingMaker(undefined, 1));
             cy.fetch_local_event_queue().then((eq) => {
                 cy.log(eq);
                 expect(eq.length).to.equal(0);
@@ -94,7 +94,7 @@ describe("Manual Rating Widget recording tests, old call ", () => {
     it("Checks if rating recording without rating would be stopped", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.recordRatingWidgetWithID(ratingMaker("123", undefined));
+            Altruist.recordRatingWidgetWithID(ratingMaker("123", undefined));
             cy.fetch_local_event_queue().then((eq) => {
                 cy.log(eq);
                 expect(eq.length).to.equal(0);
@@ -104,7 +104,7 @@ describe("Manual Rating Widget recording tests, old call ", () => {
     it("Checks if id and rating is enough", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.recordRatingWidgetWithID({ widget_id: "123", rating: 1 });
+            Altruist.recordRatingWidgetWithID({ widget_id: "123", rating: 1 });
             cy.fetch_local_event_queue().then((eq) => {
                 cy.log(eq);
                 expect(eq.length).to.equal(1);
@@ -117,7 +117,7 @@ describe("Manual Rating Widget recording tests, old call ", () => {
     it("Check improper rating number in fixed", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.recordRatingWidgetWithID({ widget_id: "123", rating: 11 });
+            Altruist.recordRatingWidgetWithID({ widget_id: "123", rating: 11 });
             cy.fetch_local_event_queue().then((eq) => {
                 cy.log(eq);
                 expect(eq.length).to.equal(1);
@@ -132,7 +132,7 @@ describe("Manual nps recording tests ", () => {
     it("Checks if a nps is send correctly", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.reportFeedbackWidgetManually(CountlyFeedbackWidgetMaker("123", "nps"), CountlyWidgetData, widgetResponseMakerNpsRating(2));
+            Altruist.reportFeedbackWidgetManually(CountlyFeedbackWidgetMaker("123", "nps"), CountlyWidgetData, widgetResponseMakerNpsRating(2));
             cy.fetch_local_event_queue().then((eq) => {
                 cy.log(eq);
                 expect(eq.length).to.equal(1);
@@ -145,7 +145,7 @@ describe("Manual nps recording tests ", () => {
     it("Checks if nps would be omitted with no id", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.reportFeedbackWidgetManually(CountlyFeedbackWidgetMaker(undefined, "nps"), CountlyWidgetData, widgetResponseMakerNpsRating(2));
+            Altruist.reportFeedbackWidgetManually(CountlyFeedbackWidgetMaker(undefined, "nps"), CountlyWidgetData, widgetResponseMakerNpsRating(2));
             cy.fetch_local_event_queue().then((eq) => {
                 cy.log(eq);
                 expect(eq.length).to.equal(0);
@@ -155,7 +155,7 @@ describe("Manual nps recording tests ", () => {
     it("Checks if rating would be curbed", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.reportFeedbackWidgetManually(CountlyFeedbackWidgetMaker("123", "nps"), CountlyWidgetData, widgetResponseMakerNpsRating(11));
+            Altruist.reportFeedbackWidgetManually(CountlyFeedbackWidgetMaker("123", "nps"), CountlyWidgetData, widgetResponseMakerNpsRating(11));
             cy.fetch_local_event_queue().then((eq) => {
                 cy.log(eq);
                 expect(eq.length).to.equal(1);
@@ -170,7 +170,7 @@ describe("Manual survey recording tests ", () => {
     it("Checks if a survey is send correctly", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.reportFeedbackWidgetManually(CountlyFeedbackWidgetMaker("123", "survey"), CountlyWidgetData, widgetResponseMakerSurvey("a", "b", "c", 7));
+            Altruist.reportFeedbackWidgetManually(CountlyFeedbackWidgetMaker("123", "survey"), CountlyWidgetData, widgetResponseMakerSurvey("a", "b", "c", 7));
             cy.fetch_local_event_queue().then((eq) => {
                 cy.log(eq);
                 expect(eq.length).to.equal(1);
@@ -184,7 +184,7 @@ describe("Manual survey recording tests ", () => {
     it("Checks if null response would have closed flag", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.reportFeedbackWidgetManually(CountlyFeedbackWidgetMaker("123", "survey"), CountlyWidgetData, null);
+            Altruist.reportFeedbackWidgetManually(CountlyFeedbackWidgetMaker("123", "survey"), CountlyWidgetData, null);
             cy.fetch_local_event_queue().then((eq) => {
                 cy.log(eq);
                 expect(eq.length).to.equal(1);
@@ -197,7 +197,7 @@ describe("Manual survey recording tests ", () => {
     it("Checks if no id would be rejected", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.reportFeedbackWidgetManually(CountlyFeedbackWidgetMaker(undefined, "survey"), CountlyWidgetData, widgetResponseMakerSurvey("a", "b", "c", 7));
+            Altruist.reportFeedbackWidgetManually(CountlyFeedbackWidgetMaker(undefined, "survey"), CountlyWidgetData, widgetResponseMakerSurvey("a", "b", "c", 7));
             cy.fetch_local_event_queue().then((eq) => {
                 cy.log(eq);
                 expect(eq.length).to.equal(0);
@@ -209,7 +209,7 @@ describe("Manual Rating widget recording tests, new call ", () => {
     it("Checks if a rating is send correctly", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.reportFeedbackWidgetManually(CountlyFeedbackWidgetMaker("123", "rating"), CountlyWidgetData, widgetResponseMakerNpsRating(3));
+            Altruist.reportFeedbackWidgetManually(CountlyFeedbackWidgetMaker("123", "rating"), CountlyWidgetData, widgetResponseMakerNpsRating(3));
             cy.fetch_local_event_queue().then((eq) => {
                 cy.log(eq);
                 expect(eq.length).to.equal(1);
@@ -222,7 +222,7 @@ describe("Manual Rating widget recording tests, new call ", () => {
     it("Checks if null response would have closed flag", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.reportFeedbackWidgetManually(CountlyFeedbackWidgetMaker("123", "rating"), CountlyWidgetData, null);
+            Altruist.reportFeedbackWidgetManually(CountlyFeedbackWidgetMaker("123", "rating"), CountlyWidgetData, null);
             cy.fetch_local_event_queue().then((eq) => {
                 cy.log(eq);
                 expect(eq.length).to.equal(1);
@@ -234,7 +234,7 @@ describe("Manual Rating widget recording tests, new call ", () => {
     it("Checks if no id would be rejected", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.reportFeedbackWidgetManually(CountlyFeedbackWidgetMaker(undefined, "rating"), CountlyWidgetData, widgetResponseMakerNpsRating(3));
+            Altruist.reportFeedbackWidgetManually(CountlyFeedbackWidgetMaker(undefined, "rating"), CountlyWidgetData, widgetResponseMakerNpsRating(3));
             cy.fetch_local_event_queue().then((eq) => {
                 cy.log(eq);
                 expect(eq.length).to.equal(0);
@@ -244,7 +244,7 @@ describe("Manual Rating widget recording tests, new call ", () => {
     it("Checks if rating would be curbed", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            Countly.reportFeedbackWidgetManually(CountlyFeedbackWidgetMaker("123", "rating"), CountlyWidgetData, widgetResponseMakerNpsRating(6));
+            Altruist.reportFeedbackWidgetManually(CountlyFeedbackWidgetMaker("123", "rating"), CountlyWidgetData, widgetResponseMakerNpsRating(6));
             cy.fetch_local_event_queue().then((eq) => {
                 cy.log(eq);
                 expect(eq.length).to.equal(1);

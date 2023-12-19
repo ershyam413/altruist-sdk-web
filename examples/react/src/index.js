@@ -3,22 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App-WithEffect';
 import * as serviceWorker from './serviceWorker';
-import Countly from 'countly-sdk-web';
+import Altruist from 'altruist-sdk-web';
 
-//Exposing Countly to the DOM as a global variable
+//Exposing Altruist to the DOM as a global variable
 //Usecase - Heatmaps
-window.Countly = Countly;
-Countly.init({
+window.Altruist = Altruist;
+Altruist.init({
     app_key: 'YOUR_APP_KEY',
     url: 'YOUR_SERVER_URL',
     debug: true
 });
 
-Countly.q.push(['track_sessions']);
-Countly.q.push(['track_scrolls']);
-Countly.q.push(['track_clicks']);
-Countly.q.push(['track_links']);
-Countly.q.push(["track_errors"]);
+Altruist.q.push(['track_sessions']);
+Altruist.q.push(['track_scrolls']);
+Altruist.q.push(['track_clicks']);
+Altruist.q.push(['track_links']);
+Altruist.q.push(["track_errors"]);
 
 ReactDOM.render(
   <React.StrictMode>

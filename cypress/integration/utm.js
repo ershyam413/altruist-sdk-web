@@ -1,9 +1,9 @@
 /* eslint-disable require-jsdoc */
-var Countly = require("../../lib/countly");
+var Altruist = require("../../lib/countly");
 var hp = require("../support/helper");
 
 function initMulti(appKey, searchQuery, utmStuff) {
-    Countly.init({
+    Altruist.init({
         app_key: appKey,
         url: "https://your.domain.countly",
         test_mode: true,

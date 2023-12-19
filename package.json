@@ -1,7 +1,7 @@
 {
-  "name": "countly-sdk-web",
-  "version": "23.12.0",
-  "description": "Countly Web SDK",
+  "name": "altruist-sdk-web",
+  "version": "0.0.1",
+  "description": "altruist Web SDK",
   "main": "lib/countly.js",
   "directories": {
     "example": "examples",
@@ -19,19 +19,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Countly/countly-sdk-web"
+    "url": "https://github.com/ershyam413/altruist-sdk-web.git"
   },
   "keywords": [
     "Countly",
     "Analytics",
     "Web"
   ],
-  "author": "Countly <hello@count.ly> (https://countly.com/)",
+  "author": "Countly <hello@count.ly> (https://www.altruistindia.com/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Countly/countly-sdk-web/issues"
+    "url": "https://github.com/ershyam413/altruist-sdk-web/issues"
   },
-  "homepage": "https://countly.com/",
+  "homepage": "https://www.altruistindia.com/",
   "devDependencies": {
     "cypress": "^9.5.0",
     "cypress-localstorage-commands": "^1.7.0",
@@ -45,7 +45,7 @@
     "stylelint": "14.9.1",
     "stylelint-config-standard": "28.0.0"
   },
-  "npmName": "countly-sdk-web",
+  "npmName": "altruist-sdk-web",
   "npmFileMap": [
     {
       "basePath": "lib",

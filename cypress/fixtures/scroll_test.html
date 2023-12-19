@@ -14,15 +14,15 @@
   window.localStorage.clear();
   deleteAllCookies();
   console.error("cleared the storage");
-  Countly.init({
+  Altruist.init({
     app_key: "YOUR_APP_KEY",
     url: "https://your.domain.countly",
     debug:true,
     test_mode: true
   })
-  Countly.track_sessions();
-  Countly.track_pageview();
-  Countly.track_scrolls();
+  Altruist.track_sessions();
+  Altruist.track_pageview();
+  Altruist.track_scrolls();
   </script>
 </head>
 <body>

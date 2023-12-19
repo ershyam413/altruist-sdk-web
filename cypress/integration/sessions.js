@@ -1,5 +1,5 @@
 /* eslint-disable require-jsdoc */
-var Countly = require("../../lib/countly");
+var Altruist = require("../../lib/countly");
 var hp = require("../support/helper");
 // if you are testing on an app
 const app_key = hp.appKey;
@@ -13,7 +13,7 @@ const eventObj = {
 };
 
 function initMain() {
-    Countly.init({
+    Altruist.init({
         app_key: "YOUR_APP_KEY",
         url: "https://your.domain.countly",
         session_update: 3,
@@ -33,11 +33,11 @@ describe("Session tests ", () => {
             // initialize countly
             initMain();
             // begin session
-            Countly.begin_session();
+            Altruist.begin_session();
             // wait for session extension
             cy.wait(3000).then(() => {
                 // end the session
-                Countly.end_session(10, true);
+                Altruist.end_session(10, true);
                 var queue = dummyQueue;
                 // first object of the queue should be about begin session
                 cy.check_session(queue[0]);
@@ -53,11 +53,11 @@ describe("Session tests ", () => {
             // initialize countly
             initMain();
             // begin session
-            Countly.begin_session();
+            Altruist.begin_session();
             // wait for session extension
             cy.wait(4250).then(() => {
                 // end the session
-                Countly.end_session(10, true);
+                Altruist.end_session(10, true);
                 // get the JSON string from local storage
                 cy.fetch_local_request_queue().then((rq) => {
                     // 3 sessions and 1 orientation
@@ -150,7 +150,7 @@ describe("Check request related functions", () => {
             // initialize countly
             initMain();
             let reqObject = {};
-            Countly._internals.prepareRequest(reqObject);
+            Altruist._internals.prepareRequest(reqObject);
             cy.check_commons(reqObject);
             cy.check_request_commons(reqObject);
         });
@@ -160,7 +160,7 @@ describe("Check request related functions", () => {
             // initialize countly
             initMain();
             let reqObject = { app_key: null, device_id: null };
-            Countly._internals.prepareRequest(reqObject);
+            Altruist._internals.prepareRequest(reqObject);
             cy.check_commons(reqObject);
             cy.check_request_commons(reqObject);
         });
@@ -170,7 +170,7 @@ describe("Check request related functions", () => {
             // initialize countly
             initMain();
             let reqObject = { extraKey: "value" };
-            Countly._internals.prepareRequest(reqObject);
+            Altruist._internals.prepareRequest(reqObject);
             expect(reqObject.extraKey).to.equal("value");
             cy.check_commons(reqObject);
             cy.check_request_commons(reqObject);

@@ -1,10 +1,10 @@
 import React from 'react';
-import Countly from 'countly-sdk-web';
+import Altruist from 'altruist-sdk-web';
 import countlyImage from './countly.jpg';
 
 function Contact() {
     const emailUsClick = () => {
-        Countly.q.push(['add_event', {
+        Altruist.q.push(['add_event', {
             "key": "email-us-clicked",
             "count": 1
         }]);

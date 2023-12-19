@@ -19,7 +19,7 @@ function getRandomNumber(min, max) {
 // eslint-disable-next-line no-unused-vars
 function setUserData(user) {
     // eslint-disable-next-line no-undef
-    Countly.q.push(["user_details", {
+    Altruist.q.push(["user_details", {
         name: user.name,
         username: user.username,
         email: user.email,
@@ -103,7 +103,7 @@ function deleteOldFeedbackWidget(widget, type) {
     }
     catch (error) {
         // eslint-disable-next-line no-undef
-        Countly._internals.log("ERROR", "Error while deleting old feedback widget:" + error);
+        Altruist._internals.log("ERROR", "Error while deleting old feedback widget:" + error);
     }
 }
 
@@ -112,7 +112,7 @@ function deleteOldFeedbackWidget(widget, type) {
 function allWidgetsCallbackNPS(feedbacks, err) {
     if (err) {
         // eslint-disable-next-line no-undef
-        return Countly._internals.log("ERROR", "Error while allWidgetsCallbackNPS:" + err);
+        return Altruist._internals.log("ERROR", "Error while allWidgetsCallbackNPS:" + err);
     }
     // first nps widget to fetch
     var i = 0;
@@ -122,7 +122,7 @@ function allWidgetsCallbackNPS(feedbacks, err) {
             // eslint-disable-next-line no-loop-func
             setTimeout(function() {
                 // eslint-disable-next-line no-undef
-                Countly.present_feedback_widget(feedbacks[i], "", "");
+                Altruist.present_feedback_widget(feedbacks[i], "", "");
                 evaluateFeedbackWidgetProperties(feedbacks[i]);
             }, 250);
             break;
@@ -136,7 +136,7 @@ function allWidgetsCallbackNPS(feedbacks, err) {
 function allWidgetsCallbackSurvey(feedbacks, err) {
     if (err) {
         // eslint-disable-next-line no-undef
-        return Countly._internals.log("ERROR", "Error while allWidgetsCallbackSurvey:" + error);
+        return Altruist._internals.log("ERROR", "Error while allWidgetsCallbackSurvey:" + error);
     }
     // first survey widget to fetch
     var i = 0;
@@ -146,7 +146,7 @@ function allWidgetsCallbackSurvey(feedbacks, err) {
             // eslint-disable-next-line no-loop-func
             setTimeout(function() {
                 // eslint-disable-next-line no-undef
-                Countly.present_feedback_widget(feedbacks[i], "", "");
+                Altruist.present_feedback_widget(feedbacks[i], "", "");
                 evaluateFeedbackWidgetProperties(feedbacks[i]);
             }, 250);
             break;
@@ -160,10 +160,10 @@ function allWidgetsCallbackSurvey(feedbacks, err) {
 function allWidgetsCallbackRating(feedbacks, err) {
     if (err) {
         // eslint-disable-next-line no-undef
-        return Countly._internals.log("ERROR", "Error while allWidgetsCallbackRating:" + err);
+        return Altruist._internals.log("ERROR", "Error while allWidgetsCallbackRating:" + err);
     }
     // eslint-disable-next-line no-undef
-    Countly._internals.log("INFO", "Returned feedbacks:[" + feedbacks + "]");
+    Altruist._internals.log("INFO", "Returned feedbacks:[" + feedbacks + "]");
     // first rating widget to fetch
     var i = 0;
     while (i < feedbacks.length) {
@@ -172,7 +172,7 @@ function allWidgetsCallbackRating(feedbacks, err) {
             // eslint-disable-next-line no-loop-func
             setTimeout(function() {
                 // eslint-disable-next-line no-undef
-                Countly.present_feedback_widget(feedbacks[i], "", "");
+                Altruist.present_feedback_widget(feedbacks[i], "", "");
                 evaluateFeedbackWidgetProperties(feedbacks[i]);
             }, 250);
             break;

@@ -1,9 +1,9 @@
 /* eslint-disable require-jsdoc */
-var Countly = require("../../lib/countly");
+var Altruist = require("../../lib/countly");
 var hp = require("../support/helper");
 
 function init(appKey, searchQuery, utmStuff) {
-    Countly.init({
+    Altruist.init({
         app_key: appKey,
         url: "https://your.domain.countly",
         test_mode: true,
@@ -23,7 +23,7 @@ describe("View with utm and referrer tests ", () => {
     it("Checks if a single default utm tag is at view segmentation", () => {
         hp.haltAndClearStorage(() => {
             init("YOUR_APP_KEY", "?utm_source=hehe", undefined);
-            Countly.track_view(pageNameOne); // first view
+            Altruist.track_view(pageNameOne); // first view
             // View event should have the utm tag
             cy.fetch_local_event_queue().then((eq) => {
                 cy.check_view_event(eq[0], pageNameOne, undefined, false);
@@ -43,8 +43,8 @@ describe("View with utm and referrer tests ", () => {
     it("Checks if a single default utm tag is at view segmentation of both views", () => {
         hp.haltAndClearStorage(() => {
             init("YOUR_APP_KEY", "?utm_source=hehe", undefined);
-            Countly.track_view(pageNameOne); // first view
-            Countly.track_view(pageNameTwo); // second view
+            Altruist.track_view(pageNameOne); // first view
+            Altruist.track_view(pageNameTwo); // second view
             // View event should have the utm tag
             cy.fetch_local_event_queue().then((eq) => {
                 cy.log(eq);
@@ -73,7 +73,7 @@ describe("View with utm and referrer tests ", () => {
     it("Checks if default utm tags appear in view", () => {
         hp.haltAndClearStorage(() => {
             init("YOUR_APP_KEY", "?utm_source=hehe&utm_medium=hehe1&utm_campaign=hehe2&utm_term=hehe3&utm_content=hehe4", undefined);
-            Countly.track_view(pageNameOne);
+            Altruist.track_view(pageNameOne);
             cy.fetch_local_event_queue().then((eq) => {
                 cy.check_view_event(eq[0], pageNameOne, undefined, false);
                 hp.validateDefaultUtmTags(eq[0].segmentation, "hehe", "hehe1", "hehe2", "hehe3", "hehe4");
@@ -92,7 +92,7 @@ describe("View with utm and referrer tests ", () => {
     it("Checks if a single custom utm tag appears in view", () => {
         hp.haltAndClearStorage(() => {
             init("YOUR_APP_KEY", "?utm_aa=hehe", { aa: true, bb: true });
-            Countly.track_view(pageNameOne);
+            Altruist.track_view(pageNameOne);
             cy.fetch_local_event_queue().then((eq) => {
                 cy.check_view_event(eq[0], pageNameOne, undefined, false);
                 hp.validateDefaultUtmTags(eq[0].segmentation, undefined, undefined, undefined, undefined, undefined);
@@ -114,7 +114,7 @@ describe("View with utm and referrer tests ", () => {
     it("Checks if multiple custom utm tags appears in view", () => {
         hp.haltAndClearStorage(() => {
             init("YOUR_APP_KEY", "?utm_aa=hehe&utm_bb=hoho", { aa: true, bb: true });
-            Countly.track_view(pageNameOne);
+            Altruist.track_view(pageNameOne);
             cy.fetch_local_event_queue().then((eq) => {
                 cy.check_view_event(eq[0], pageNameOne, undefined, false);
                 hp.validateDefaultUtmTags(eq[0].segmentation, undefined, undefined, undefined, undefined, undefined);
@@ -137,7 +137,7 @@ describe("View with utm and referrer tests ", () => {
     it("Checks if extra custom utm tags are ignored in view", () => {
         hp.haltAndClearStorage(() => {
             init("YOUR_APP_KEY", "?utm_aa=hehe&utm_bb=hoho&utm_cc=ignore", { aa: true, bb: true });
-            Countly.track_view(pageNameOne);
+            Altruist.track_view(pageNameOne);
             cy.fetch_local_event_queue().then((eq) => {
                 cy.check_view_event(eq[0], pageNameOne, undefined, false);
                 hp.validateDefaultUtmTags(eq[0].segmentation, undefined, undefined, undefined, undefined, undefined);
@@ -164,7 +164,7 @@ describe("View with utm and referrer tests ", () => {
     it("Checks if utm tag appears in segmentation in multi instancing", () => {
         hp.haltAndClearStorage(() => {
             // default (original) init with no custom tags and default query
-            var C1 = Countly.init({
+            var C1 = Altruist.init({
                 app_key: "YOUR_APP_KEY",
                 url: "https://your.domain.countly",
                 test_mode: true,
@@ -177,8 +177,8 @@ describe("View with utm and referrer tests ", () => {
             C1.track_view(pageNameOne);
 
             // utm object provided with appropriate query
-            var C2 = Countly.init({
-                app_key: "Countly_2",
+            var C2 = Altruist.init({
+                app_key: "Altruist_2",
                 url: "https://your.domain.countly",
                 test_mode: true,
                 test_mode_eq: true,
@@ -203,7 +203,7 @@ describe("View with utm and referrer tests ", () => {
             });
 
             // second instance
-            cy.fetch_local_event_queue("Countly_2").then((eq) => {
+            cy.fetch_local_event_queue("Altruist_2").then((eq) => {
                 cy.log(eq);
                 cy.check_view_event(eq[0], pageNameOne, undefined, false);
                 hp.validateDefaultUtmTags(eq[0].segmentation, undefined, undefined, undefined, undefined, undefined);
@@ -250,45 +250,45 @@ describe("View with utm and referrer tests ", () => {
 
 describe("isReferrerUsable tests", () => {
     it("should return false if document.referrer is undefined", () => {
-        const result = Countly._internals.isReferrerUsable(undefined);
+        const result = Altruist._internals.isReferrerUsable(undefined);
         expect(result).to.eq(false);
     });
 
     it("should return false if document.referrer is null", () => {
-        const result = Countly._internals.isReferrerUsable(null);
+        const result = Altruist._internals.isReferrerUsable(null);
         expect(result).to.eq(false);
     });
 
     it("should return false if document.referrer is an empty string", () => {
-        const result = Countly._internals.isReferrerUsable("");
+        const result = Altruist._internals.isReferrerUsable("");
         expect(result).to.eq(false);
     });
 
     it("should return false if the referrer is the same as the current hostname", () => {
-        const result = Countly._internals.isReferrerUsable("http://localhost:3000");
+        const result = Altruist._internals.isReferrerUsable("http://localhost:3000");
         expect(result).to.eq(false);
     });
 
     it("should return false if the referrer is not a valid URL", () => {
-        const result = Countly._internals.isReferrerUsable("invalid-url");
+        const result = Altruist._internals.isReferrerUsable("invalid-url");
         expect(result).to.eq(false);
     });
 
     it("should return false if the referrer is in the ignore list", () => {
         hp.haltAndClearStorage(() => {
-            Countly.init({
+            Altruist.init({
                 app_key: "YOUR_APP_KEY",
                 url: "https://your.domain.countly",
                 ignore_referrers: ["http://example.com"]
             });
-            const result = Countly._internals.isReferrerUsable("http://example.com/something");
+            const result = Altruist._internals.isReferrerUsable("http://example.com/something");
             expect(result).to.eq(false);
         });
     });
 
     it("should return true if the referrer is valid and not in the ignore list", () => {
         hp.haltAndClearStorage(() => {
-            const result = Countly._internals.isReferrerUsable("http://example.com/path");
+            const result = Altruist._internals.isReferrerUsable("http://example.com/path");
             expect(result).to.eq(true);
         });
     });

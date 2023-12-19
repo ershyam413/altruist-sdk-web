@@ -1,10 +1,10 @@
 /* eslint-disable cypress/no-unnecessary-waiting */
 /* eslint-disable require-jsdoc */
-var Countly = require("../../lib/countly");
+var Altruist = require("../../lib/countly");
 var hp = require("../support/helper");
 
 function initMain(consent) {
-    Countly.init({
+    Altruist.init({
         app_key: "YOUR_APP_KEY",
         url: "https://your.domain.countly",
         require_consent: consent,
@@ -47,7 +47,7 @@ describe("Consent tests", () => {
     it("Only custom event should be sent to the queue", () => {
         hp.haltAndClearStorage(() => {
             initMain(true);
-            Countly.add_consent(["events"]);
+            Altruist.add_consent(["events"]);
             hp.events();
             cy.fetch_local_event_queue().then((eq) => {
                 expect(eq.length).to.equal(1);
@@ -58,7 +58,7 @@ describe("Consent tests", () => {
     it("All but custom event should be sent to the queue", () => {
         hp.haltAndClearStorage(() => {
             initMain(true);
-            Countly.add_consent(["sessions", "views", "users", "star-rating", "apm", "feedback", "push", "clicks"]);
+            Altruist.add_consent(["sessions", "views", "users", "star-rating", "apm", "feedback", "push", "clicks"]);
             hp.events();
             cy.fetch_local_event_queue().then((eq) => {
                 expect(eq.length).to.equal(6);
@@ -69,7 +69,7 @@ describe("Consent tests", () => {
     it("All consents given and all events should be recorded", () => {
         hp.haltAndClearStorage(() => {
             initMain(true);
-            Countly.add_consent(["sessions", "views", "users", "star-rating", "apm", "feedback", "events", "push", "clicks"]);
+            Altruist.add_consent(["sessions", "views", "users", "star-rating", "apm", "feedback", "events", "push", "clicks"]);
             hp.events();
             cy.fetch_local_event_queue().then((eq) => {
                 expect(eq.length).to.equal(7);
@@ -90,8 +90,8 @@ describe("Consent tests", () => {
     it("Non-merge ID change should reset all consents", () => {
         hp.haltAndClearStorage(() => {
             initMain(true);
-            Countly.add_consent(["sessions", "views", "users", "star-rating", "apm", "feedback", "push", "clicks"]);
-            Countly.change_id("Richard Wagner II", false);
+            Altruist.add_consent(["sessions", "views", "users", "star-rating", "apm", "feedback", "push", "clicks"]);
+            Altruist.change_id("Richard Wagner II", false);
             hp.events();
             cy.fetch_local_event_queue().then((eq) => {
                 expect(eq.length).to.equal(0);
@@ -101,8 +101,8 @@ describe("Consent tests", () => {
     it("Merge ID change should not reset consents", () => {
         hp.haltAndClearStorage(() => {
             initMain(true);
-            Countly.add_consent(["sessions", "views", "users", "star-rating", "apm", "feedback", "push", "clicks"]);
-            Countly.change_id("Richard Wagner the second", true);
+            Altruist.add_consent(["sessions", "views", "users", "star-rating", "apm", "feedback", "push", "clicks"]);
+            Altruist.change_id("Richard Wagner the second", true);
             hp.events();
             cy.fetch_local_event_queue().then((eq) => {
                 expect(eq.length).to.equal(6);

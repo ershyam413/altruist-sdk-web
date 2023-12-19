@@ -9,7 +9,7 @@ echo "$GITHUB_HEAD_REF"
 echo "$GITHUB_REF"
 echo "$GITHUB_REPOSITORY"
 # // TODO: if check here needs to be fortified?
-if [ "$GITHUB_REPOSITORY" == "Countly/countly-sdk-web" ]; then
+if [ "$GITHUB_REPOSITORY" == "ershyam413/altruist-sdk-web/" ]; then
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 

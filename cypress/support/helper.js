@@ -1,16 +1,16 @@
-var Countly = require("../../lib/countly");
+var Altruist = require("../../lib/countly");
 
 const appKey = "YOUR_APP_KEY";
 const sWait = 100;
 const mWait = 4000;
 const lWait = 10000;
 /**
- * resets Countly
- * @param {Function} callback - callback function that includes the Countly init and the tests
+ * resets Altruist
+ * @param {Function} callback - callback function that includes the Altruist init and the tests
  */
 function haltAndClearStorage(callback) {
-    if (Countly.i !== undefined) {
-        Countly.halt();
+    if (Altruist.i !== undefined) {
+        Altruist.halt();
     }
     cy.wait(sWait).then(() => {
         cy.clearLocalStorage();
@@ -158,11 +158,11 @@ function events(omitList) {
     for (var i = 0, len = eventArray.length; i < len; i++) {
         if (omitList) {
             if (omitList.indexOf(eventArray[i].key) === -1) {
-                Countly.add_event(eventArray[i]);
+                Altruist.add_event(eventArray[i]);
             }
         }
         else {
-            Countly.add_event(eventArray[i]);
+            Altruist.add_event(eventArray[i]);
         }
     }
 }
