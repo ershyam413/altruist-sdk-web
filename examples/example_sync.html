@@ -4,28 +4,28 @@
     <!-- Page styling here -->
     <link rel='stylesheet' type='text/css' href='./style/style.css'>
 
-    <!--Countly script-->
-    <script type='text/javascript' src='../lib/countly.js'></script>
+    <!--Firebird script-->
+    <script type='text/javascript' src='../lib/firebird.js'></script>
     <script type='text/javascript'>
 
-        //initializing countly with params
-        Countly.init({
+        //initializing firebird with params
+        Firebird.init({
             app_key: "YOUR_APP_KEY",
-            url: "https://your.domain.countly", //your server goes here
+            url: "https://your.domain.firebird", //your server goes here
             debug: true
         })
         //track sessions automatically
-        Countly.track_sessions();
+        Firebird.track_sessions();
         //track pageviews automatically
-        Countly.track_pageview();
-        Countly.track_errors();
+        Firebird.track_pageview();
+        Firebird.track_errors();
     </script>
 </head>
 
 <body>
     <!-- Header, banner etc. Top part of your site  -->
     <div id="header">
-        <h1>Sync Countly Implementation</h1>
+        <h1>Sync Firebird Implementation</h1>
         <img id="logo" src="./images/logo.png">
     </div>
 
@@ -33,12 +33,12 @@
         <img src="./images/team_countly.jpg" id="wallpaper" />
         <br />
         <input type="button" id="testButton" onclick="clickEvent()" value="Test Button">
-        <p><a href='https://www.altruistindia.com/'>Countly</a></p>
+        <p><a href='https://www.altruistindia.com/'>Firebird</a></p>
     </center>
     <script type='text/javascript'>
         //send event on button click
         function clickEvent() {
-            Countly.add_event({
+            Firebird.add_event({
                 key: "buttonClick",
                 "segmentation": {
                     "id": "id"

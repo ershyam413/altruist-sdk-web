@@ -1,4 +1,4 @@
-var Altruist = require("../../lib/countly");
+var Altruist = require("../../lib/firebird");
 var hp = require("../support/helper");
 
 // ========================================
@@ -14,7 +14,7 @@ var hp = require("../support/helper");
 function initMain(offline) {
     Altruist.init({
         app_key: "YOUR_APP_KEY",
-        url: "https://your.domain.countly",
+        url: "https://your.domain.firebird",
         test_mode: true,
         debug: true,
         offline_mode: offline

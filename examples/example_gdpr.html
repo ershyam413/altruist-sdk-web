@@ -4,31 +4,31 @@
     <!-- Page styling here -->
     <link rel='stylesheet' type='text/css' href='./style/style.css'>
 
-    <!--Countly script-->
-    <script type='text/javascript' src='../lib/countly.js'></script>
+    <!--Firebird script-->
+    <script type='text/javascript' src='../lib/firebird.js'></script>
     <script type='text/javascript'>
 
-        //initializing countly with params and passing require_consent config as true
-        Countly.init({
+        //initializing firebird with params and passing require_consent config as true
+        Firebird.init({
             app_key: "YOUR_APP_KEY",
-            url: "https://your.domain.countly", //your server goes here
+            url: "https://your.domain.firebird", //your server goes here
             debug: true,
             require_consent: true //this true means consent is required
         });
 
         //(optionally) provide custom feature tree if needed
-        Countly.group_features({
+        Firebird.group_features({
             activity: ["sessions", "events", "views"],
             interaction: ["scrolls", "clicks", "forms"]
         });
 
         //we can call all the helper methods we want, they won't record until consent is provided for specific features
-        Countly.track_sessions();
-        Countly.track_pageview();
-        Countly.track_clicks();
-        Countly.track_links();
-        Countly.track_forms();
-        Countly.track_errors({ jquery: "1.10", jqueryui: "1.10" });
+        Firebird.track_sessions();
+        Firebird.track_pageview();
+        Firebird.track_clicks();
+        Firebird.track_links();
+        Firebird.track_forms();
+        Firebird.track_errors({ jquery: "1.10", jqueryui: "1.10" });
 
         //Consent Management logic should be implemented and controled by developer
         //this is just a simply example of what logic it could have
@@ -36,8 +36,8 @@
             var consents = localStorage.getItem("consents");
             //checking if user already provided consent
             if (consents) {
-                //we already have array with consents from previous visit, let's just pass them to Countly
-                Countly.add_consent(JSON.parse(consents));
+                //we already have array with consents from previous visit, let's just pass them to Firebird
+                Firebird.add_consent(JSON.parse(consents));
             }
             else {
                 //user have not yet provided us a consent
@@ -55,13 +55,13 @@
         function giveConsent() {
             //give consent to same 3 features
             var response = ["activity", "interaction", "crashes"];
-            Countly.add_consent(response);
+            Firebird.add_consent(response);
             localStorage.setItem("consents", JSON.stringify(response));
         }
         function removeConsent() {
             //remove consent from same 3 features
             var response = ["activity", "interaction", "crashes"];
-            Countly.remove_consent(response);
+            Firebird.remove_consent(response);
             localStorage.setItem("consents", JSON.stringify([]));
         }
     </script>
@@ -88,7 +88,7 @@
         </form>
         <p><button id="unhandled_error" onclick="unhandled_error()">Unhandled Error</button></p>
         <p><a id="track_link" href='#link'>Dummy link</a></p>
-        <p><a href='https://www.altruistindia.com/'>Countly</a></p>
+        <p><a href='https://www.altruistindia.com/'>Firebird</a></p>
         <p><button onclick="giveConsent()">Give Consent</button></p>
         <p><button onclick="removeConsent()">Remove Consent</button></p>
     </center>

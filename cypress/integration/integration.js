@@ -1,13 +1,13 @@
-var Altruist = require("../../lib/countly");
+var Altruist = require("../../lib/firebird");
 var hp = require("../support/helper");
 
 /**
- *  init countly
+ *  init firebird
  */
 function initMain() {
     Altruist.init({
         app_key: "YOUR_APP_KEY",
-        url: "https://your.domain.countly",
+        url: "https://your.domain.firebird",
         debug: true,
         test_mode: true
     });

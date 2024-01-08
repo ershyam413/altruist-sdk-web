@@ -10,7 +10,7 @@ window.Altruist = Altruist;
 
 Altruist.init({
   app_key: "YOUR_APP_KEY",
-  url: "https://your.domain.countly",
+  url: "https://your.domain.firebird",
   debug: true
 });
 Altruist.track_sessions();

@@ -1,4 +1,4 @@
-var Altruist = require("../../lib/countly");
+var Altruist = require("../../lib/firebird");
 
 const appKey = "YOUR_APP_KEY";
 const sWait = 100;
@@ -70,21 +70,21 @@ var waitFunction = function(startTime, waitTime, waitIncrement, continueCallback
 /**
  * This intercepts the request the SDK makes and returns the request parameters to the callback function
  * @param {String} requestType - GET, POST, PUT, DELETE
- * @param {String} requestUrl - request url (https://your.domain.countly)
+ * @param {String} requestUrl - request url (https://your.domain.firebird)
  * @param {String} endPoint - endpoint (/i)
  * @param {String} requestParams - request parameters (?begin_session=**)
  * @param {String} alias - alias for the request
  * @param {Function} callback - callback function
  */
 function interceptAndCheckRequests(requestType, requestUrl, endPoint, requestParams, alias, callback) {
-    requestUrl = requestUrl || "https://your.domain.countly"; // TODO: might be needed in the future but not yet
+    requestUrl = requestUrl || "https://your.domain.firebird"; // TODO: might be needed in the future but not yet
     endPoint = endPoint || "/i";
     requestParams = requestParams || "?**";
     alias = alias || "getXhr";
 
     cy.intercept(requestUrl + endPoint + requestParams, (req) => {
         req.reply(200, { result: "Success" }, {
-            "x-countly-rr": "2"
+            "x-firebird-rr": "2"
         });
     }).as(alias);
     cy.wait("@" + alias).then((xhr) => {
@@ -172,9 +172,9 @@ function events(omitList) {
  *  Validates requests in the request queue for normal flow test
  * @param {Array} rq - request queue
  * @param {string} viewName - name of the view
- * @param {string} countlyAppKey - app key
+ * @param {string} firebirdAppKey - app key
 */
-function testNormalFlow(rq, viewName, countlyAppKey) {
+function testNormalFlow(rq, viewName, firebirdAppKey) {
     cy.log(rq);
     expect(rq.length).to.equal(8);
     const idType = rq[0].t;
@@ -218,7 +218,7 @@ function testNormalFlow(rq, viewName, countlyAppKey) {
     rq.forEach(element => {
         expect(element.device_id).to.equal(id);
         expect(element.t).to.equal(idType);
-        expect(element.app_key).to.equal(countlyAppKey);
+        expect(element.app_key).to.equal(firebirdAppKey);
         expect(element.metrics).to.be.ok;
         expect(element.dow).to.exist;
         expect(element.hour).to.exist;

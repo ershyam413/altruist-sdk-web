@@ -84,13 +84,13 @@
  * +--------------------------------------------------+------------------------------------+----------------------+
  */
 
-var Altruist = require("../../lib/countly");
+var Altruist = require("../../lib/firebird");
 var hp = require("../support/helper");
 
 function initMain(deviceId, offline, searchQuery, clear) {
     Altruist.init({
         app_key: "YOUR_APP_KEY",
-        url: "https://your.domain.countly",
+        url: "https://your.domain.firebird",
         device_id: deviceId,
         test_mode: true,
         debug: true,

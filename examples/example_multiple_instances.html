@@ -3,50 +3,50 @@
 <head>
 	<!-- Page styling here -->
 	<link rel='stylesheet' type='text/css' href='./style/style.css'>
-	<p><a href='https://www.altruistindia.com/'>Countly</a></p>
+	<p><a href='https://www.altruistindia.com/'>Firebird</a></p>
 
-	<!--Countly script-->
-	<script type='text/javascript' src='../lib/countly.js'></script>
+	<!--Firebird script-->
+	<script type='text/javascript' src='../lib/firebird.js'></script>
 	<script type='text/javascript'>
-		Countly = Countly || {};
-		Countly.q = Countly.q || [];
+		Firebird = Firebird || {};
+		Firebird.q = Firebird.q || [];
 
 
 
-		//initializing first instance, which will be global Countly
-		Countly.init({
+		//initializing first instance, which will be global Firebird
+		Firebird.init({
 			app_key: "YOUR_APP_KEY1",
-			url: "https://your.domain.countly", //your server goes here
+			url: "https://your.domain.firebird", //your server goes here
 			debug: true
 		})
 		//report event to first app
-		Countly.add_event({
+		Firebird.add_event({
 			key: "first_app"
 		});
 
 
 
 		//initialize second instance for another app synchronously
-		var Countly2 = Countly.init({
+		var Firebird2 = Firebird.init({
 			app_key: "YOUR_APP_KEY2", //must have different APP key
-			url: "https://your.domain.countly", //your server goes here
+			url: "https://your.domain.firebird", //your server goes here
 			debug: true
 		});
 		//report event to second app
-		Countly2.add_event({
+		Firebird2.add_event({
 			key: "second_app"
 		});
 
 
 
 		//initialize third instance for another app asynchronously
-		Countly.q.push(["init", {
+		Firebird.q.push(["init", {
 			app_key: "YOUR_APP_KEY3", //must have different APP key
-			url: "https://your.domain.countly", //your server goes here
+			url: "https://your.domain.firebird", //your server goes here
 			debug: true
 		}])
 		//report event to third app asynchronously by passing app key as first arg
-		Countly.q.push(["YOUR_APP_KEY3", "add_event", {
+		Firebird.q.push(["YOUR_APP_KEY3", "add_event", {
 			key: "third_app"
 		}]);
 	</script>

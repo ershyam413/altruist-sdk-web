@@ -32,15 +32,15 @@
         "sort": true,
         "disqus": "altruist-documentation",
 		"openGraph": {
-			"title": "Countly Web SDK Documentation",
+			"title": "Firebird Web SDK Documentation",
 			"type": "website",
 			"image": "",
-			"site_name": "Countly Web SDK Documentation",
+			"site_name": "Firebird Web SDK Documentation",
 			"url": "https://github.com/ershyam413/altruist-sdk-web/"
 		},
 		"meta": {
-			"title": "Countly Web SDK Documentation",
-			"description": "JSDoc generated Countly Web SDK documentation",
+			"title": "Firebird Web SDK Documentation",
+			"description": "JSDoc generated Firebird Web SDK documentation",
 			"keyword": "altruist, web, sdk, jsdoc, doc, documentation"
 		},
         "search": true,
@@ -48,7 +48,7 @@
         "typedefs": true,
         "removeQuotes": "all",
         "menu":{
-            "Countly":{
+            "Firebird":{
                 "href":"https://www.altruistindia.com/"
             },
             "Web SDK Docs":{
@@ -58,6 +58,6 @@
                 "href":"https://github.com/ershyam413/altruist-sdk-web/"
             }
         },
-        "scripts": ["https://stats.count.ly/sdk/countly-docs.js"]
+        "scripts": ["https://stats.count.ly/sdk/firebird-docs.js"]
     }
 }

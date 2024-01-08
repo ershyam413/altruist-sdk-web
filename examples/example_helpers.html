@@ -4,34 +4,34 @@
     <!-- Page styling here -->
     <link rel='stylesheet' type='text/css' href='./style/style.css'>
 
-    <!--Countly script-->
-    <script type='text/javascript' src='../lib/countly.js'></script>
+    <!--Firebird script-->
+    <script type='text/javascript' src='../lib/firebird.js'></script>
     <script type='text/javascript'>
 
-        //initializing countly with params
-        Countly.init({
+        //initializing firebird with params
+        Firebird.init({
             app_key: "YOUR_APP_KEY",
-            url: "https://your.domain.countly", //your server goes here
+            url: "https://your.domain.firebird", //your server goes here
             debug: true
         });
 
         //track sessions automatically
-        Countly.track_sessions();
+        Firebird.track_sessions();
 
         //track pageviews automatically
-        Countly.track_pageview();
+        Firebird.track_pageview();
 
         //track any clicks to webpages automatically
-        Countly.track_clicks();
+        Firebird.track_clicks();
 
         //track link clicks automatically
-        Countly.track_links();
+        Firebird.track_links();
 
         //track form submissions automatically
-        Countly.track_forms();
+        Firebird.track_forms();
 
         //track javascript errors
-        Countly.track_errors({ jquery: "1.10", jqueryui: "1.10" });
+        Firebird.track_errors({ jquery: "1.10", jqueryui: "1.10" });
 
         //let's cause some errors
         function cause_error() {
@@ -39,16 +39,16 @@
         }
 
         function unhandled_error() {
-            Countly.add_log('Pressed unhandled button');
+            Firebird.add_log('Pressed unhandled button');
             cause_error();
         }
 
         function handled_error() {
-            Countly.add_log('Pressed handled button');
+            Firebird.add_log('Pressed handled button');
             try {
                 cause_error();
             } catch (err) {
-                Countly.log_error(err)
+                Firebird.log_error(err)
             }
         }
     </script>
@@ -76,7 +76,7 @@
         <p><button id="unhandled_error" onclick="unhandled_error()">Unhandled Error</button></p>
         <p><button id="handled_error" onclick="handled_error()">Handled Error</button></p>
         <p><a id="track_link" href='#link'>Dummy link</a></p>
-        <p><a href='https://www.altruistindia.com/'>Countly</a></p>
+        <p><a href='https://www.altruistindia.com/'>Firebird</a></p>
     </center>
 </body>
 

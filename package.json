@@ -1,15 +1,15 @@
 {
   "name": "altruist-sdk-web",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "altruist Web SDK",
-  "main": "lib/countly.js",
+  "main": "lib/firebird.js",
   "directories": {
     "example": "examples",
     "lib": "lib",
     "test": "test"
   },
   "scripts": {
-    "docs": "node_modules/.bin/jsdoc lib/countly.js README.md -c jsdoc_conf.json -d docs",
+    "docs": "node_modules/.bin/jsdoc lib/firebird.js README.md -c jsdoc_conf.json -d docs",
     "build": "webpack",
     "lint": "./node_modules/.bin/eslint --ignore-path .eslintignore --fix .",
     "lintMD": "markdownlint **/*.md --fix",
@@ -22,11 +22,11 @@
     "url": "https://github.com/ershyam413/altruist-sdk-web.git"
   },
   "keywords": [
-    "Countly",
+    "Firebird",
     "Analytics",
     "Web"
   ],
-  "author": "Countly <hello@count.ly> (https://www.altruistindia.com/)",
+  "author": "Firebird <hello@count.ly> (https://www.altruistindia.com/)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ershyam413/altruist-sdk-web/issues"
@@ -50,7 +50,7 @@
     {
       "basePath": "lib",
       "files": [
-        "countly.min.js"
+        "firebird.min.js"
       ]
     }
   ]

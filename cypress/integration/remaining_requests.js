@@ -1,11 +1,11 @@
 /* eslint-disable require-jsdoc */
-var Altruist = require("../../lib/countly");
+var Altruist = require("../../lib/firebird");
 var hp = require("../support/helper");
 
 function initMain(shouldStopRequests) {
     Altruist.init({
         app_key: "YOUR_APP_KEY",
-        url: "https://your.domain.countly",
+        url: "https://your.domain.firebird",
         app_version: "1.0",
         // would prevent requests from being sent to the server if true
         test_mode: shouldStopRequests

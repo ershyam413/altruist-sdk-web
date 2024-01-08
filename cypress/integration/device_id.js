@@ -1,11 +1,11 @@
 /* eslint-disable require-jsdoc */
-var Altruist = require("../../lib/countly");
+var Altruist = require("../../lib/firebird");
 var hp = require("../support/helper");
 
 function initMain(deviceId, offline, searchQuery, clear, rq, eq) {
     Altruist.init({
         app_key: "YOUR_APP_KEY",
-        url: "https://your.domain.countly",
+        url: "https://your.domain.firebird",
         device_id: deviceId,
         test_mode: rq,
         test_mode_eq: eq,

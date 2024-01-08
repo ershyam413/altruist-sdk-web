@@ -1,12 +1,12 @@
 /* eslint-disable require-jsdoc */
-var Altruist = require("../../lib/countly");
+var Altruist = require("../../lib/firebird");
 var hp = require("../support/helper");
 import { triggerStorageChange } from "../support/integration_helper";
 
 function initMain(val) {
     Altruist.init({
         app_key: "YOUR_APP_KEY",
-        url: "https://your.domain.countly",
+        url: "https://your.domain.firebird",
         device_id: 0, // provide number
         test_mode_eq: true,
         test_mode: true,
@@ -78,7 +78,7 @@ describe("Multi tab storage change test", () => {
         hp.haltAndClearStorage(() => {
             let firstIns = Altruist.init({
                 app_key: "YOUR_APP_KEY1",
-                url: "https://your.domain.countly",
+                url: "https://your.domain.firebird",
                 device_id: 0,
                 test_mode_eq: true,
                 test_mode: true,
@@ -87,7 +87,7 @@ describe("Multi tab storage change test", () => {
             });
             let secondIns = Altruist.init({
                 app_key: "YOUR_APP_KEY2",
-                url: "https://your.domain.countly",
+                url: "https://your.domain.firebird",
                 device_id: -1,
                 test_mode_eq: true,
                 test_mode: true,

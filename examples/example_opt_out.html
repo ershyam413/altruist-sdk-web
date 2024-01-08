@@ -4,33 +4,33 @@
     <!-- Page styling here -->
     <link rel='stylesheet' type='text/css' href='./style/style.css'>
 
-    <!--Countly script-->
-    <script type='text/javascript' src='../lib/countly.js'></script>
+    <!--Firebird script-->
+    <script type='text/javascript' src='../lib/firebird.js'></script>
     <script type='text/javascript'>
 
-        //initializing countly with params
-        Countly.init({
+        //initializing firebird with params
+        Firebird.init({
             app_key: "YOUR_APP_KEY",
-            url: "https://your.domain.countly", //your server goes here
+            url: "https://your.domain.firebird", //your server goes here
             debug: true
         })
         //track sessions automatically
-        Countly.track_sessions();
+        Firebird.track_sessions();
 
         //track pageviews automatically
-        Countly.track_pageview();
+        Firebird.track_pageview();
 
         //track any clicks to webpages automatically
-        Countly.track_clicks();
+        Firebird.track_clicks();
 
         //track link clicks automatically
-        Countly.track_links();
+        Firebird.track_links();
 
         //track form submissions automatically
-        Countly.track_forms();
+        Firebird.track_forms();
 
         //track javascript errors
-        Countly.track_errors({ jquery: "1.10", jqueryui: "1.10" });
+        Firebird.track_errors({ jquery: "1.10", jqueryui: "1.10" });
     </script>
 </head>
 
@@ -49,16 +49,16 @@
     <script type='text/javascript'>
         //send event on button click
         function testOpt() {
-            if (Countly.ignore_visitor) {
-                Countly.opt_in();
+            if (Firebird.ignore_visitor) {
+                Firebird.opt_in();
             }
             else {
-                Countly.opt_out();
+                Firebird.opt_out();
             }
             setOpt();
         }
         function setOpt() {
-            if (Countly.ignore_visitor) {
+            if (Firebird.ignore_visitor) {
                 //opted out, allow opt in
                 document.getElementById("top").innerHTML = "You are Opted Out";
                 document.getElementById("optButton").value = "Opt in";

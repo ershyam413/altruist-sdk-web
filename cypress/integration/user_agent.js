@@ -1,12 +1,12 @@
 /* eslint-disable cypress/no-unnecessary-waiting */
 /* eslint-disable require-jsdoc */
-var Altruist = require("../../lib/countly");
+var Altruist = require("../../lib/firebird");
 var hp = require("../support/helper");
 
 function initMain() {
     Altruist.init({
         app_key: "YOUR_APP_KEY",
-        url: "https://your.domain.countly",
+        url: "https://your.domain.firebird",
         test_mode_eq: true
     });
 }
@@ -16,9 +16,9 @@ describe("User Agent tests ", () => {
     it("Check if the user agent set by the developer was recognized by the SDK", () => {
         hp.haltAndClearStorage(() => {
             cy.visit("./cypress/fixtures/user_agent.html");
-            // we set an attribute in documentElement (html tag for html files) called data-countly-useragent at our SDK with the currentUserAgentString function value, check if it corresponds to user agent string
+            // we set an attribute in documentElement (html tag for html files) called data-firebird-useragent at our SDK with the currentUserAgentString function value, check if it corresponds to user agent string
             cy.get("html")
-                .invoke("attr", "data-countly-useragent")
+                .invoke("attr", "data-firebird-useragent")
                 // this value was set at the cypress.json file
                 .should("eq", "abcd");
             // in test html file we created a button and set its value to detect_device(), check if it returns the correct device type

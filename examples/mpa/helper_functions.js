@@ -83,10 +83,10 @@ function evaluateFeedbackWidgetProperties(widget) {
 function deleteOldFeedbackWidget(widget, type) {
     try {
         var anchor = document.getElementById("csbg");
-        var wrapper = document.getElementsByClassName("countly-ratings-wrapper")[0];
-        var overlay = document.getElementsByClassName("countly-ratings-overlay")[0];
-        var iframeR = document.getElementById("countly-ratings-iframe");
-        var iframeS = document.getElementById("countly-surveys-iframe");
+        var wrapper = document.getElementsByClassName("firebird-ratings-wrapper")[0];
+        var overlay = document.getElementsByClassName("firebird-ratings-overlay")[0];
+        var iframeR = document.getElementById("firebird-ratings-iframe");
+        var iframeS = document.getElementById("firebird-surveys-iframe");
         if (anchor && wrapper) {
             iframeR.remove();
             overlay.remove();

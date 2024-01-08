@@ -4,13 +4,13 @@
   <!-- Page styling here -->
   <link rel='stylesheet' type='text/css' href='./style/style.css'>
 
-  <!--Countly script-->
-  <script type='text/javascript' src='../lib/countly.js'></script>
+  <!--Firebird script-->
+  <script type='text/javascript' src='../lib/firebird.js'></script>
   <script type='text/javascript'>
 
-    Countly.init({
+    Firebird.init({
       app_key: 'YOUR_APP_KEY', //your app key
-      url: 'https://your.domain.countly', //your server goes here
+      url: 'https://your.domain.firebird', //your server goes here
       debug: true
     });
 
@@ -19,7 +19,7 @@
     //=================================================
     function fetchAndDisplayWidget() {
       // Fetch user's feedbacks widgets from the server (must have been created at server first)
-      Countly.get_available_feedback_widgets(feedbackWidgetsCallback);
+      Firebird.get_available_feedback_widgets(feedbackWidgetsCallback);
     }
 
     // Callback function to execute after fetching the feedback widgets
@@ -33,7 +33,7 @@
       const widgetType = "rating";
       const countlyFeedbackWidget = countlyPresentableFeedback.find(widget => widget.type === widgetType);
       if (!countlyFeedbackWidget) {
-        console.error(`[Countly] No ${widgetType} widget found`);
+        console.error(`[Firebird] No ${widgetType} widget found`);
         return;
       }
 
@@ -45,7 +45,7 @@
       const segmentation = { page: "home_page" };
 
       // Display the feedback widget to the end user 
-      Countly.present_feedback_widget(countlyFeedbackWidget, selectorId, selectorClass, segmentation);
+      Firebird.present_feedback_widget(countlyFeedbackWidget, selectorId, selectorClass, segmentation);
     }
 
     //=================================================
@@ -54,7 +54,7 @@
     // an example of getting the widget list, using it to get widget data and then recording data for it manually. widgetType can be 'nps', 'survey' or 'rating'    
     function getFeedbackWidgetListAndDoThings(widgetType) {
       // get the widget list
-      Countly.get_available_feedback_widgets(
+      Firebird.get_available_feedback_widgets(
         // callback function, 1st param is the feedback widget list
         function (feedbackList, err) {
           if (err) { // error handling
@@ -65,12 +65,12 @@
           // find the widget object with the given widget type. This or a similar implementation can be used while using fetchAndDisplayWidget() as well
           const countlyFeedbackWidget = feedbackList.find(widget => widget.type === widgetType);
           if (!countlyFeedbackWidget) {
-            console.error(`[Countly] No ${widgetType} widget found`);
+            console.error(`[Firebird] No ${widgetType} widget found`);
             return;
           }
 
           // Get data with the widget object
-          Countly.getFeedbackWidgetData(countlyFeedbackWidget,
+          Firebird.getFeedbackWidgetData(countlyFeedbackWidget,
             // callback function, 1st param is the feedback widget data
             function (feedbackData, err) {
               if (err) { // error handling
@@ -78,17 +78,17 @@
                 return;
               }
 
-              const CountlyWidgetData = feedbackData;
+              const FirebirdWidgetData = feedbackData;
               // record data according to the widget type
-              if (CountlyWidgetData.type === 'nps') {
-                Countly.reportFeedbackWidgetManually(countlyFeedbackWidget, CountlyWidgetData, { rating: 3, comment: "comment" });
-              } else if (CountlyWidgetData.type === 'survey') {
+              if (FirebirdWidgetData.type === 'nps') {
+                Firebird.reportFeedbackWidgetManually(countlyFeedbackWidget, FirebirdWidgetData, { rating: 3, comment: "comment" });
+              } else if (FirebirdWidgetData.type === 'survey') {
                 var widgetResponse = {};
                 // form the key/value pairs according to data
-                widgetResponse["answ-" + CountlyWidgetData.questions[0].id] = CountlyWidgetData.questions[0].type === "rating" ? 3 : "answer";
-                Countly.reportFeedbackWidgetManually(countlyFeedbackWidget, CountlyWidgetData, widgetResponse);
-              } else if (CountlyWidgetData.type === 'rating') {
-                Countly.reportFeedbackWidgetManually(countlyFeedbackWidget, CountlyWidgetData, { rating: 3, comment: "comment", email: "email", contactMe: true });
+                widgetResponse["answ-" + FirebirdWidgetData.questions[0].id] = FirebirdWidgetData.questions[0].type === "rating" ? 3 : "answer";
+                Firebird.reportFeedbackWidgetManually(countlyFeedbackWidget, FirebirdWidgetData, widgetResponse);
+              } else if (FirebirdWidgetData.type === 'rating') {
+                Firebird.reportFeedbackWidgetManually(countlyFeedbackWidget, FirebirdWidgetData, { rating: 3, comment: "comment", email: "email", contactMe: true });
               }
             }
 
@@ -107,7 +107,7 @@
 
   <center>
     <img src="./images/team_countly.jpg" id="wallpaper" />
-    <p><a href='https://www.altruistindia.com/'>Countly</a></p>
+    <p><a href='https://www.altruistindia.com/'>Firebird</a></p>
     <p><button onclick="fetchAndDisplayWidget()">Enable Feedback Widget</button></p>
     <p><button onclick="getFeedbackWidgetListAndDoThings('nps')">Manually Record NPS Data</button></p>
     <p><button onclick="getFeedbackWidgetListAndDoThings('survey')">Manually Record Survey Data</button></p>

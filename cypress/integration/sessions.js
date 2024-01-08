@@ -1,5 +1,5 @@
 /* eslint-disable require-jsdoc */
-var Altruist = require("../../lib/countly");
+var Altruist = require("../../lib/firebird");
 var hp = require("../support/helper");
 // if you are testing on an app
 const app_key = hp.appKey;
@@ -15,7 +15,7 @@ const eventObj = {
 function initMain() {
     Altruist.init({
         app_key: "YOUR_APP_KEY",
-        url: "https://your.domain.countly",
+        url: "https://your.domain.firebird",
         session_update: 3,
         test_mode: true
     });
@@ -30,7 +30,7 @@ const dummyQueue = [
 describe("Session tests ", () => {
     it("Checks if session start, extension and ending works with a dummy queue", () => {
         hp.haltAndClearStorage(() => {
-            // initialize countly
+            // initialize firebird
             initMain();
             // begin session
             Altruist.begin_session();
@@ -50,7 +50,7 @@ describe("Session tests ", () => {
     });
     it("Checks if session start, extension and ending works", () => {
         hp.haltAndClearStorage(() => {
-            // initialize countly
+            // initialize firebird
             initMain();
             // begin session
             Altruist.begin_session();
@@ -147,7 +147,7 @@ describe("Browser session tests, manual 2, no cookie", () => {
 describe("Check request related functions", () => {
     it("Check if prepareRequest forms a proper request object", () => {
         hp.haltAndClearStorage(() => {
-            // initialize countly
+            // initialize firebird
             initMain();
             let reqObject = {};
             Altruist._internals.prepareRequest(reqObject);
@@ -157,7 +157,7 @@ describe("Check request related functions", () => {
     });
     it("Check if prepareRequest forms a proper request object from a bad one ", () => {
         hp.haltAndClearStorage(() => {
-            // initialize countly
+            // initialize firebird
             initMain();
             let reqObject = { app_key: null, device_id: null };
             Altruist._internals.prepareRequest(reqObject);
@@ -167,7 +167,7 @@ describe("Check request related functions", () => {
     });
     it("Check if prepareRequest forms a proper request object and not erase an extra value ", () => {
         hp.haltAndClearStorage(() => {
-            // initialize countly
+            // initialize firebird
             initMain();
             let reqObject = { extraKey: "value" };
             Altruist._internals.prepareRequest(reqObject);

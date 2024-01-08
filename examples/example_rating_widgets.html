@@ -4,13 +4,13 @@
     <!-- Page styling here -->
     <link rel='stylesheet' type='text/css' href='./style/style.css'>
 
-    <!--Countly script-->
-    <script type='text/javascript' src='../lib/countly.js'></script>
+    <!--Firebird script-->
+    <script type='text/javascript' src='../lib/firebird.js'></script>
     <script type='text/javascript'>
 
-        Countly.init({
+        Firebird.init({
             app_key: 'YOUR_APP_KEY', //your app key
-            url: 'https://your.domain.countly', //your server goes here
+            url: 'https://your.domain.firebird', //your server goes here
             debug: true
         });
         //=====================================================================================================
@@ -22,16 +22,16 @@
         //Press Enable Widget to return back to the original widget
         function enable() {
             //to re-enable rating widget if necessary 
-            Countly.enableRatingWidgets({ 'popups': ['YOUR_WIDGET_ID'] }); //example: {'popups':['12asd15fsgf546516a5sdf']}
+            Firebird.enableRatingWidgets({ 'popups': ['YOUR_WIDGET_ID'] }); //example: {'popups':['12asd15fsgf546516a5sdf']}
         }
         function pop() {
             //to manually popup the widget
-            Countly.presentRatingWidgetWithID("YOUR_WIDGET_ID"); // example: "12asd15fsgf546516a5sdf"
+            Firebird.presentRatingWidgetWithID("YOUR_WIDGET_ID"); // example: "12asd15fsgf546516a5sdf"
         }
         function multi() {
             //to show multiple widgets
             var widgets = ["YOUR_WIDGET_ID", "YOUR_WIDGET_ID"]; // example: ["12asd15fsgf546516a5sdf", "45646asd8asdweqrfg54"]
-            Countly.initializeRatingWidgets(widgets);
+            Firebird.initializeRatingWidgets(widgets);
         }
 
     </script>
@@ -46,7 +46,7 @@
 
     <center>
         <img src="./images/team_countly.jpg" id="wallpaper" />
-        <p><a href='https://www.altruistindia.com/'>Countly</a></p>
+        <p><a href='https://www.altruistindia.com/'>Firebird</a></p>
         <p><button onclick="enable()">Enable Widget</button></p>
         <p><button onclick="pop()">Pop Widget</button></p>
         <p><button onclick="multi()">Multiple Widgets</button></p>

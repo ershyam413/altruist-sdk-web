@@ -1,11 +1,11 @@
 /* eslint-disable require-jsdoc */
-var Altruist = require("../../lib/countly");
+var Altruist = require("../../lib/firebird");
 var hp = require("../support/helper");
 
 function init(appKey, searchQuery, utmStuff) {
     Altruist.init({
         app_key: appKey,
-        url: "https://your.domain.countly",
+        url: "https://your.domain.firebird",
         test_mode: true,
         test_mode_eq: true,
         utm: utmStuff, // utm object provided in init
@@ -157,7 +157,7 @@ describe("View with utm and referrer tests ", () => {
         });
     });
 
-    // we create 2 instances of countly with different configurations
+    // we create 2 instances of firebird with different configurations
     // then we record the same view with both instances
     // then we check if the utm tags are recorded correctly
     // and no referrer is recorded (because localhost)
@@ -166,7 +166,7 @@ describe("View with utm and referrer tests ", () => {
             // default (original) init with no custom tags and default query
             var C1 = Altruist.init({
                 app_key: "YOUR_APP_KEY",
-                url: "https://your.domain.countly",
+                url: "https://your.domain.firebird",
                 test_mode: true,
                 test_mode_eq: true,
                 utm: undefined, // utm object provided in init
@@ -179,7 +179,7 @@ describe("View with utm and referrer tests ", () => {
             // utm object provided with appropriate query
             var C2 = Altruist.init({
                 app_key: "Altruist_2",
-                url: "https://your.domain.countly",
+                url: "https://your.domain.firebird",
                 test_mode: true,
                 test_mode_eq: true,
                 utm: { ss: true }, // utm object provided in init
@@ -278,7 +278,7 @@ describe("isReferrerUsable tests", () => {
         hp.haltAndClearStorage(() => {
             Altruist.init({
                 app_key: "YOUR_APP_KEY",
-                url: "https://your.domain.countly",
+                url: "https://your.domain.firebird",
                 ignore_referrers: ["http://example.com"]
             });
             const result = Altruist._internals.isReferrerUsable("http://example.com/something");

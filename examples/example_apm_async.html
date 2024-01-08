@@ -4,43 +4,43 @@
 	<!-- Page styling here -->
 	<link rel='stylesheet' type='text/css' href='./style/style.css'>
 
-	<!--Countly script-->
+	<!--Firebird script-->
 	<script type='text/javascript'>
 		//some default pre init
-		var Countly = Countly || {};
-		Countly.q = Countly.q || [];
+		var Firebird = Firebird || {};
+		Firebird.q = Firebird.q || [];
 
 		//provide countly initialization parameters
-		Countly.app_key = "YOUR_APP_KEY";
-		Countly.url = "https://your.domain.countly"; //your server goes here
-		Countly.debug = true;
-		Countly.loadAPMScriptsAsync = true;
-		// Countly.customSourceBoomerang = "../somewhere/boomerang.min.js";
-		// Countly.customSourceCountlyBoomerang = "../somewhere/countly_boomerang.js";
+		Firebird.app_key = "YOUR_APP_KEY";
+		Firebird.url = "https://your.domain.firebird"; //your server goes here
+		Firebird.debug = true;
+		Firebird.loadAPMScriptsAsync = true;
+		// Firebird.customSourceBoomerang = "../somewhere/boomerang.min.js";
+		// Firebird.customSourceFirebirdBoomerang = "../somewhere/firebird_boomerang.js";
 
 		//start pushing function calls to queue:
 		
 		// track sessions automatically
-		Countly.q.push(['track_sessions']);
+		Firebird.q.push(['track_sessions']);
 
 		// track sessions automatically
-		Countly.q.push(['track_pageview']);
+		Firebird.q.push(['track_pageview']);
 
 		// enable APM
-		Countly.q.push(['track_performance']);
+		Firebird.q.push(['track_performance']);
 
 		//load countly script asynchronously
 		(function () {
 			var cly = document.createElement('script'); cly.type = 'text/javascript';
 			cly.async = true;
 			//enter url of script here
-			cly.src = '../lib/countly.js';
-			cly.onload = function () { Countly.init() };
+			cly.src = '../lib/firebird.js';
+			cly.onload = function () { Firebird.init() };
 			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(cly, s);
 		})();
 		//send event on button click
 		function clickEvent() {
-			Countly.q.push(['add_event', {
+			Firebird.q.push(['add_event', {
 				key: "buttonClick",
 				"segmentation": {
 					"id": "id"
@@ -53,7 +53,7 @@
 <body>
 	<!-- Header, banner etc. Top part of your site  -->
 	<div id="header">
-		<h1>Async Countly Implementation</h1>
+		<h1>Async Firebird Implementation</h1>
 		<img id="logo" src="./images/logo.png">
 	</div>
 
@@ -61,7 +61,7 @@
 		<img src="./images/team_countly.jpg" id="wallpaper" />
 		<br />
 		<input type="button" id="testButton" onclick="clickEvent()" value="Test Button">
-		<p><a href='https://www.altruistindia.com/'>Countly</a></p>
+		<p><a href='https://www.altruistindia.com/'>Firebird</a></p>
 	</center>
 </body>
 

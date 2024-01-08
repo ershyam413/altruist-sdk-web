@@ -1,11 +1,11 @@
 /* eslint-disable require-jsdoc */
-var Altruist = require("../../lib/countly");
+var Altruist = require("../../lib/firebird");
 var hp = require("../support/helper");
 
 function initMain() {
     Altruist.init({
         app_key: "YOUR_APP_KEY",
-        url: "https://your.domain.countly",
+        url: "https://your.domain.firebird",
         test_mode: true
     });
 }
@@ -14,7 +14,7 @@ describe("Health Check tests ", () => {
     it("Check if health check is sent at the beginning", () => {
         hp.haltAndClearStorage(() => {
             initMain();
-            cy.intercept("https://your.domain.countly/i?*").as("getXhr");
+            cy.intercept("https://your.domain.firebird/i?*").as("getXhr");
             cy.wait("@getXhr").then((xhr) => {
                 const url = new URL(xhr.request.url);
 
